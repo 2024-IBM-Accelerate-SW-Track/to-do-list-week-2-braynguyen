@@ -7,6 +7,9 @@ class AddTodo extends Component {
     super();
     this.state = {
       content: "",
+      firstName: "",
+      lastName: "",
+      date: "",
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user.
@@ -15,8 +18,23 @@ class AddTodo extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
+      date: Date().toLocaleString('en-US')
     });
   };
+
+  handleFirstName = (event) => {
+    this.setState({
+      firstName: event.target.value,
+      date: Date().toLocaleString('en-US')
+    })
+  }
+
+  handleLastName = (event) => {
+    this.setState({
+      lastName: event.target.value,
+      date: Date().toLocaleString('en-US')
+    })
+  }
   // The handleSubmit function collects the forms input and puts it into the react state.
   // event.preventDefault() is called to prevents default event behavior like refreshing the browser.
   // this.props.addTodo(this.state) passes the current state (or user input) into the addTodo function defined
@@ -27,6 +45,9 @@ class AddTodo extends Component {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
+        firstName: "",
+        lastName: "",
+        date: "",
       });
     }
   };
@@ -46,6 +67,20 @@ class AddTodo extends Component {
           onChange={this.handleChange}
           value={this.state.content}
           data-testid="new-item-textfield"
+        />
+        <TextField
+          label="Add First Name"
+          variant="outlined"
+          onChange={this.handleFirstName}
+          value={this.state.firstName}
+          data-testid="new-firstName-textfield"
+        />
+        <TextField
+          label="Add Last Name"
+          variant="outlined"
+          onChange={this.handleLastName}
+          value={this.state.lastName}
+          data-testid="new-lastName-textfield"
         />
         <Button
           style={{ marginLeft: "10px" }}
